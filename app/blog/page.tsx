@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Card } from "@heroui/react/card";
+import { cn, linkVariants } from "@heroui/styles";
 import { getAllPosts } from "@/lib/blog";
 import { siteConfig } from "@/lib/site-config";
 
@@ -10,6 +12,10 @@ export const metadata: Metadata = {
 
 export default function BlogIndexPage() {
   const posts = getAllPosts();
+  const titleLinkClass = cn(
+    linkVariants().base(),
+    "font-semibold text-[var(--color-ink)] hover:text-[var(--color-primary)] hover:underline",
+  );
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-14 sm:px-6 lg:px-8">
@@ -23,24 +29,25 @@ export default function BlogIndexPage() {
       ) : (
         <ul className="mt-12 space-y-8">
           {posts.map((post) => (
-            <li key={post.slug} className="border-b border-[var(--color-border)] pb-8">
-              <time
-                dateTime={post.date}
-                className="text-xs font-medium text-[var(--color-primary)]"
-              >
-                {post.date}
-              </time>
-              <h2 className="mt-2 text-xl font-semibold text-[var(--color-ink)]">
-                <Link
-                  href={`/blog/${post.slug}`}
-                  className="hover:text-[var(--color-primary)] hover:underline"
-                >
-                  {post.title}
-                </Link>
-              </h2>
-              {post.description ? (
-                <p className="mt-2 text-sm text-[var(--color-muted)]">{post.description}</p>
-              ) : null}
+            <li key={post.slug}>
+              <Card variant="transparent" className="border-b border-[var(--color-border)] pb-8 shadow-none">
+                <Card.Content className="gap-1 p-0">
+                  <time
+                    dateTime={post.date}
+                    className="text-xs font-medium text-[var(--color-primary)]"
+                  >
+                    {post.date}
+                  </time>
+                  <h2 className="mt-2 text-xl">
+                    <Link href={`/blog/${post.slug}`} className={titleLinkClass}>
+                      {post.title}
+                    </Link>
+                  </h2>
+                  {post.description ? (
+                    <p className="mt-2 text-sm text-[var(--color-muted)]">{post.description}</p>
+                  ) : null}
+                </Card.Content>
+              </Card>
             </li>
           ))}
         </ul>

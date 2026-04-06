@@ -1,5 +1,11 @@
 "use client";
 
+import { Alert } from "@heroui/react/alert";
+import { Button } from "@heroui/react/button";
+import { Input } from "@heroui/react/input";
+import { Label } from "@heroui/react/label";
+import { TextArea } from "@heroui/react/textarea";
+import { TextField } from "@heroui/react/textfield";
 import { useActionState } from "react";
 import { submitContact, type ContactState } from "@/app/contact/actions";
 
@@ -10,18 +16,19 @@ export function ContactForm() {
 
   if (state.ok) {
     return (
-      <div
-        className="rounded-xl border border-emerald-200 bg-emerald-50 p-6 text-sm text-emerald-900"
-        role="status"
-      >
-        お問い合わせを送信しました。内容を確認のうえ、折り返しご連絡いたします。
-      </div>
+      <Alert status="success" className="w-full">
+        <Alert.Indicator />
+        <Alert.Content>
+          <Alert.Description>
+            お問い合わせを送信しました。内容を確認のうえ、折り返しご連絡いたします。
+          </Alert.Description>
+        </Alert.Content>
+      </Alert>
     );
   }
 
   return (
     <form action={formAction} className="space-y-6" autoComplete="off">
-      {/* honeypot（値が入ると送信せず成功表示のみ — ブラウザの自動入力で誤爆しないよう name は一般的でないものに） */}
       <input
         type="text"
         name="_wf_hp"
@@ -32,72 +39,37 @@ export function ContactForm() {
         aria-hidden
       />
 
-      <div>
-        <label htmlFor="name" className="block text-sm font-medium text-[var(--color-ink)]">
-          お名前 <span className="text-red-600">*</span>
-        </label>
-        <input
-          id="name"
-          name="name"
-          type="text"
-          required
-          maxLength={100}
-          className="mt-2 w-full rounded-lg border border-[var(--color-border)] px-3 py-2 text-sm shadow-sm focus:border-[var(--color-primary)] focus:outline-none focus:ring-1 focus:ring-[var(--color-primary)]"
-        />
+      <TextField name="name" isRequired>
+        <Label>お名前</Label>
+        <Input maxLength={100} />
         {state.fieldErrors?.name?.[0] ? (
           <p className="mt-1 text-xs text-red-600">{state.fieldErrors.name[0]}</p>
         ) : null}
-      </div>
+      </TextField>
 
-      <div>
-        <label htmlFor="email" className="block text-sm font-medium text-[var(--color-ink)]">
-          メールアドレス <span className="text-red-600">*</span>
-        </label>
-        <input
-          id="email"
-          name="email"
-          type="email"
-          required
-          className="mt-2 w-full rounded-lg border border-[var(--color-border)] px-3 py-2 text-sm shadow-sm focus:border-[var(--color-primary)] focus:outline-none focus:ring-1 focus:ring-[var(--color-primary)]"
-        />
+      <TextField name="email" isRequired>
+        <Label>メールアドレス</Label>
+        <Input type="email" autoComplete="email" />
         {state.fieldErrors?.email?.[0] ? (
           <p className="mt-1 text-xs text-red-600">{state.fieldErrors.email[0]}</p>
         ) : null}
-      </div>
+      </TextField>
 
-      <div>
-        <label htmlFor="subject" className="block text-sm font-medium text-[var(--color-ink)]">
-          件名 <span className="text-red-600">*</span>
-        </label>
-        <input
-          id="subject"
-          name="subject"
-          type="text"
-          required
-          maxLength={200}
-          className="mt-2 w-full rounded-lg border border-[var(--color-border)] px-3 py-2 text-sm shadow-sm focus:border-[var(--color-primary)] focus:outline-none focus:ring-1 focus:ring-[var(--color-primary)]"
-        />
+      <TextField name="subject" isRequired>
+        <Label>件名</Label>
+        <Input maxLength={200} />
         {state.fieldErrors?.subject?.[0] ? (
           <p className="mt-1 text-xs text-red-600">{state.fieldErrors.subject[0]}</p>
         ) : null}
-      </div>
+      </TextField>
 
-      <div>
-        <label htmlFor="message" className="block text-sm font-medium text-[var(--color-ink)]">
-          お問い合わせ内容 <span className="text-red-600">*</span>
-        </label>
-        <textarea
-          id="message"
-          name="message"
-          required
-          rows={6}
-          maxLength={10000}
-          className="mt-2 w-full rounded-lg border border-[var(--color-border)] px-3 py-2 text-sm shadow-sm focus:border-[var(--color-primary)] focus:outline-none focus:ring-1 focus:ring-[var(--color-primary)]"
-        />
+      <TextField name="message" isRequired>
+        <Label>お問い合わせ内容</Label>
+        <TextArea rows={6} maxLength={10000} />
         {state.fieldErrors?.message?.[0] ? (
           <p className="mt-1 text-xs text-red-600">{state.fieldErrors.message[0]}</p>
         ) : null}
-      </div>
+      </TextField>
 
       {state.error ? (
         <p className="text-sm text-red-600" role="alert">
@@ -105,13 +77,9 @@ export function ContactForm() {
         </p>
       ) : null}
 
-      <button
-        type="submit"
-        disabled={pending}
-        className="inline-flex w-full items-center justify-center rounded-lg bg-[var(--color-primary)] px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[var(--color-primary-dark)] disabled:opacity-60 sm:w-auto"
-      >
+      <Button type="submit" variant="primary" isPending={pending} fullWidth className="sm:w-auto sm:min-w-40">
         {pending ? "送信中…" : "送信する"}
-      </button>
+      </Button>
 
       <p className="text-xs text-[var(--color-muted)]">
         送信内容はお問い合わせ対応のために利用し、目的外では利用しません。詳しくは

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { cn, linkVariants } from "@heroui/styles";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
@@ -8,6 +9,11 @@ export const metadata: Metadata = {
 };
 
 export default function CompanyPage() {
+  const inlineLinkClass = cn(
+    linkVariants().base(),
+    "font-medium text-[var(--color-primary)] hover:underline",
+  );
+
   return (
     <div className="mx-auto max-w-3xl px-4 py-14 sm:px-6 lg:px-8">
       <h1 className="text-3xl font-bold tracking-tight text-[var(--color-ink)]">会社概要</h1>
@@ -51,7 +57,7 @@ export default function CompanyPage() {
 
       <p className="mt-10 text-sm text-[var(--color-muted)]">
         その他のお取引条件は
-        <Link href="/legal/tokushoho" className="font-medium text-[var(--color-primary)] hover:underline">
+        <Link href="/legal/tokushoho" className={inlineLinkClass}>
           特定商取引法に基づく表記
         </Link>
         をご確認ください。

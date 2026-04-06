@@ -3,6 +3,7 @@ import matter from "gray-matter";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { compileMDX } from "next-mdx-remote/rsc";
+import { cn, buttonVariants, linkVariants } from "@heroui/styles";
 import { getAllPosts, getPostSource, postExists } from "@/lib/blog";
 import { siteConfig } from "@/lib/site-config";
 
@@ -59,12 +60,15 @@ export default async function BlogPostPage({
 
   if (frontmatter.draft) notFound();
 
+  const backLinkClass = cn(
+    buttonVariants({ variant: "ghost", size: "sm" }),
+    linkVariants().base(),
+    "text-[var(--color-primary)]",
+  );
+
   return (
     <article className="mx-auto max-w-3xl px-4 py-14 sm:px-6 lg:px-8">
-      <Link
-        href="/blog"
-        className="text-sm font-medium text-[var(--color-primary)] hover:underline"
-      >
+      <Link href="/blog" className={backLinkClass}>
         ← ブログ一覧
       </Link>
       <header className="mt-6 border-b border-[var(--color-border)] pb-8">

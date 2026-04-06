@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { cn, buttonVariants } from "@heroui/styles";
 
 export default function NotFound() {
   return (
@@ -8,10 +9,7 @@ export default function NotFound() {
       <p className="mt-4 text-sm text-[var(--color-muted)]">
         URL が間違っているか、ページが移動した可能性があります。
       </p>
-      <Link
-        href="/"
-        className="mt-8 inline-flex rounded-lg bg-[var(--color-primary)] px-5 py-2.5 text-sm font-semibold text-white hover:bg-[var(--color-primary-dark)]"
-      >
+      <Link href="/" className={cn(buttonVariants({ variant: "primary", size: "md" }), "mt-8 inline-flex")}>
         トップへ戻る
       </Link>
     </div>

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Card } from "@heroui/react/card";
 
 export const metadata: Metadata = {
   title: "実績",
@@ -83,12 +84,15 @@ export default function WorksPage() {
 
       <ul className="mt-8 space-y-8">
         {cases.map((c) => (
-          <li
-            key={c.segment}
-            className="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6"
-          >
-            <h3 className="text-lg font-semibold text-[var(--color-ink)]">{c.segment}</h3>
-            <p className="mt-3 text-sm leading-relaxed text-[var(--color-muted)]">{c.description}</p>
+          <li key={c.segment}>
+            <Card variant="secondary" className="shadow-sm">
+              <Card.Content>
+                <Card.Title className="text-lg font-semibold text-[var(--color-ink)]">{c.segment}</Card.Title>
+                <Card.Description className="mt-3 text-sm leading-relaxed text-[var(--color-muted)]">
+                  {c.description}
+                </Card.Description>
+              </Card.Content>
+            </Card>
           </li>
         ))}
       </ul>

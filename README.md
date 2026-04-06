@@ -1,4 +1,4 @@
-Next.js（App Router）+ Tailwind CSS で構築したコーポレートサイトです。Vercel へのデプロイを想定しています。
+Next.js（App Router）+ Tailwind CSS + HeroUI で構築したコーポレートサイトです。Vercel へのデプロイを想定しています。
 
 ## 開発
 

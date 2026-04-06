@@ -1,5 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Card } from "@heroui/react/card";
+import { cn, buttonVariants } from "@heroui/styles";
 import { siteConfig } from "@/lib/site-config";
 
 const highlights = [
@@ -51,13 +53,16 @@ export default function HomePage() {
             <div className="mt-10 flex flex-wrap gap-4">
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center rounded-lg bg-[var(--color-primary)] px-6 py-3 text-sm font-semibold text-white shadow-md transition hover:bg-[var(--color-primary-dark)]"
+                className={cn(buttonVariants({ variant: "primary", size: "md" }))}
               >
                 お問い合わせ
               </Link>
               <Link
                 href="/services"
-                className="inline-flex items-center justify-center rounded-lg border border-[var(--color-border)] bg-white/90 px-6 py-3 text-sm font-semibold text-[var(--color-ink)] shadow-sm backdrop-blur-sm transition hover:border-[var(--color-primary)] hover:text-[var(--color-primary)]"
+                className={cn(
+                  buttonVariants({ variant: "secondary", size: "md" }),
+                  "border border-[var(--color-border)] bg-white/90 shadow-sm backdrop-blur-sm hover:border-[var(--color-primary)] hover:text-[var(--color-primary)]",
+                )}
               >
                 サービスを見る
               </Link>
@@ -73,13 +78,20 @@ export default function HomePage() {
         </p>
         <ul className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {highlights.map((item) => (
-            <li
-              key={item.title}
-              className="rounded-2xl border border-[var(--color-border)] bg-white p-6 shadow-sm transition hover:shadow-md"
-            >
-              <div className="h-1 w-12 rounded-full bg-[var(--color-accent)]" aria-hidden />
-              <h3 className="mt-4 text-lg font-semibold text-[var(--color-ink)]">{item.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-[var(--color-muted)]">{item.body}</p>
+            <li key={item.title}>
+              <Card variant="default" className="h-full transition hover:shadow-md">
+                <Card.Header>
+                  <div className="h-1 w-12 rounded-full bg-[var(--color-accent)]" aria-hidden />
+                </Card.Header>
+                <Card.Content className="pt-0">
+                  <Card.Title className="text-lg font-semibold text-[var(--color-ink)]">
+                    {item.title}
+                  </Card.Title>
+                  <Card.Description className="mt-2 text-sm leading-relaxed text-[var(--color-muted)]">
+                    {item.body}
+                  </Card.Description>
+                </Card.Content>
+              </Card>
             </li>
           ))}
         </ul>
@@ -94,10 +106,7 @@ export default function HomePage() {
             </p>
           </div>
           <div>
-            <Link
-              href="/works"
-              className="inline-flex rounded-lg bg-[var(--color-primary)] px-5 py-2.5 text-sm font-semibold text-white hover:bg-[var(--color-primary-dark)]"
-            >
+            <Link href="/works" className={cn(buttonVariants({ variant: "primary", size: "md" }))}>
               実績を見る
             </Link>
           </div>
@@ -112,7 +121,7 @@ export default function HomePage() {
           </div>
           <Link
             href="/blog"
-            className="text-sm font-semibold text-[var(--color-primary)] hover:underline"
+            className={cn(buttonVariants({ variant: "ghost", size: "sm" }), "text-[var(--color-primary)]")}
           >
             記事一覧へ
           </Link>
@@ -128,7 +137,10 @@ export default function HomePage() {
             </p>
             <Link
               href="/contact"
-              className="mt-8 inline-flex rounded-lg bg-white px-6 py-3 text-sm font-semibold text-[var(--color-primary)] hover:bg-[var(--color-surface)]"
+              className={cn(
+                buttonVariants({ variant: "secondary", size: "md" }),
+                "mt-8 bg-white text-[var(--color-primary)] hover:bg-[var(--color-surface)]",
+              )}
             >
               お問い合わせフォーム
             </Link>

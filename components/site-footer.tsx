@@ -1,3 +1,4 @@
+import { cn, linkVariants } from "@heroui/styles";
 import Link from "next/link";
 import { siteConfig } from "@/lib/site-config";
 
@@ -12,6 +13,8 @@ const footerLinks = [
 ] as const;
 
 export function SiteFooter() {
+  const linkClass = cn(linkVariants().base(), "text-[var(--color-muted)] hover:text-[var(--color-primary)]");
+
   return (
     <footer className="mt-auto border-t border-[var(--color-border)] bg-[var(--color-surface)]">
       <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
@@ -22,11 +25,7 @@ export function SiteFooter() {
           </div>
           <nav className="flex flex-col gap-2 text-sm" aria-label="フッターリンク">
             {footerLinks.map((l) => (
-              <Link
-                key={l.href}
-                href={l.href}
-                className="text-[var(--color-muted)] hover:text-[var(--color-primary)]"
-              >
+              <Link key={l.href} href={l.href} className={linkClass}>
                 {l.label}
               </Link>
             ))}

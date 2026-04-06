@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Card } from "@heroui/react/card";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
@@ -33,17 +34,20 @@ export default function ServicesPage() {
 
       <ul className="mt-12 space-y-10">
         {services.map((s) => (
-          <li
-            key={s.title}
-            className="rounded-2xl border border-[var(--color-border)] bg-white p-8 shadow-sm"
-          >
-            <div className="h-1 w-14 rounded-full bg-[var(--color-primary)]" aria-hidden />
-            <h2 className="mt-5 text-xl font-semibold text-[var(--color-ink)]">{s.title}</h2>
-            <div className="mt-4 space-y-3 text-sm leading-relaxed text-[var(--color-muted)]">
-              {s.body.map((p) => (
-                <p key={p}>{p}</p>
-              ))}
-            </div>
+          <li key={s.title}>
+            <Card variant="default" className="shadow-sm">
+              <Card.Header>
+                <div className="h-1 w-14 rounded-full bg-[var(--color-primary)]" aria-hidden />
+              </Card.Header>
+              <Card.Content>
+                <Card.Title className="text-xl font-semibold text-[var(--color-ink)]">{s.title}</Card.Title>
+                <div className="mt-4 space-y-3 text-sm leading-relaxed text-[var(--color-muted)]">
+                  {s.body.map((p) => (
+                    <p key={p}>{p}</p>
+                  ))}
+                </div>
+              </Card.Content>
+            </Card>
           </li>
         ))}
       </ul>
