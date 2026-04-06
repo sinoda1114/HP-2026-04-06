@@ -5,7 +5,7 @@ import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
   title: "ブログ",
-  description: `${siteConfig.name}のブログ・お知らせです。`,
+  description: `${siteConfig.brandName}のブログ・お知らせです。`,
 };
 
 export default function BlogIndexPage() {

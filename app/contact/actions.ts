@@ -1,8 +1,14 @@
 "use server";
 
+import { headers } from "next/headers";
 import { Resend } from "resend";
 import { z } from "zod";
+import { checkContactRateLimit } from "@/lib/contact-rate-limit";
 import { escapeHtml } from "@/lib/escape-html";
+import {
+  resolveContactFromEmail,
+  userMessageFromResendError,
+} from "@/lib/resend-contact";
 import { siteConfig } from "@/lib/site-config";
 
 const contactSchema = z.object({
@@ -25,7 +31,7 @@ export async function submitContact(
   _prev: ContactState,
   formData: FormData,
 ): Promise<ContactState> {
-  const hp = formData.get("_hp");
+  const hp = formData.get("_wf_hp");
   if (typeof hp === "string" && hp.trim() !== "") {
     return { ok: true };
   }
@@ -41,6 +47,19 @@ export async function submitContact(
     return { fieldErrors: parsed.error.flatten().fieldErrors };
   }
 
+  const headerList = await headers();
+  const forwarded = headerList.get("x-forwarded-for");
+  const clientIp =
+    forwarded?.split(",")[0]?.trim() ??
+    headerList.get("x-real-ip") ??
+    "unknown";
+  if (!checkContactRateLimit(clientIp)) {
+    return {
+      error:
+        "送信回数が多すぎます。しばらく時間をおいてから再度お試しください。",
+    };
+  }
+
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
     return {
@@ -50,13 +69,16 @@ export async function submitContact(
   }
 
   const to = process.env.CONTACT_TO_EMAIL ?? siteConfig.contactEmail;
-  const from = process.env.CONTACT_FROM_EMAIL;
-  if (!from) {
-    return {
-      error:
-        "CONTACT_FROM_EMAIL が未設定です。Resend で検証済みの送信元メールを環境変数に設定してください。",
-    };
+  const fromResolved = resolveContactFromEmail();
+  if ("error" in fromResolved) {
+    return { error: fromResolved.error };
   }
+  const { from } = fromResolved;
+
+  const bccRaw = process.env.CONTACT_BCC_EMAIL?.trim();
+  const bcc = bccRaw
+    ? bccRaw.split(",").map((s) => s.trim()).filter(Boolean)
+    : undefined;
 
   const resend = new Resend(apiKey);
   const { name, email, subject, message } = parsed.data;
@@ -69,16 +91,37 @@ export async function submitContact(
     <pre style="white-space:pre-wrap;font-family:sans-serif;">${escapeHtml(message)}</pre>
   `;
 
-  const { error } = await resend.emails.send({
+  const text = [
+    `名前: ${name}`,
+    `メール: ${email}`,
+    `件名: ${subject}`,
+    "---",
+    message,
+  ].join("\n");
+
+  const { data, error } = await resend.emails.send({
     from,
     to: [to],
+    ...(bcc?.length ? { bcc } : {}),
     replyTo: email,
     subject: `[サイトお問い合わせ] ${subject}`,
     html,
+    text,
+    tags: [
+      { name: "source", value: "contact-form" },
+      { name: "site", value: "waalsforce-corp" },
+    ],
   });
 
   if (error) {
-    return { error: "送信に失敗しました。時間をおいて再度お試しください。" };
+    if (process.env.NODE_ENV === "development") {
+      console.error("[contact] Resend error:", error.name, error.message);
+    }
+    return { error: userMessageFromResendError(error) };
+  }
+
+  if (process.env.NODE_ENV === "development" && data?.id) {
+    console.info("[contact] Resend email id:", data.id);
   }
 
   return { ok: true };

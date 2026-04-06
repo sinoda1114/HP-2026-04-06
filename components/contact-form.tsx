@@ -20,13 +20,14 @@ export function ContactForm() {
   }
 
   return (
-    <form action={formAction} className="space-y-6">
-      {/* honeypot */}
+    <form action={formAction} className="space-y-6" autoComplete="off">
+      {/* honeypot（値が入ると送信せず成功表示のみ — ブラウザの自動入力で誤爆しないよう name は一般的でないものに） */}
       <input
         type="text"
-        name="_hp"
+        name="_wf_hp"
         tabIndex={-1}
         autoComplete="off"
+        defaultValue=""
         className="absolute -left-[9999px] h-0 w-0 opacity-0"
         aria-hidden
       />

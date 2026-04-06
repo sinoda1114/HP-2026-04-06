@@ -3,7 +3,7 @@ import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
   title: "サービス",
-  description: `${siteConfig.name}の生成AIソリューションおよび導入コンサルティングのご案内です。`,
+  description: `${siteConfig.brandName}の生成AIソリューションおよび導入コンサルティングのご案内です。`,
 };
 
 const services = [
@@ -28,7 +28,7 @@ export default function ServicesPage() {
     <div className="mx-auto max-w-3xl px-4 py-14 sm:px-6 lg:px-8">
       <h1 className="text-3xl font-bold tracking-tight text-[var(--color-ink)]">サービス</h1>
       <p className="mt-4 text-[var(--color-muted)]">
-        {siteConfig.name}が提供する主なサービスをご紹介します。詳細はお問い合わせください。
+        {siteConfig.brandName}が提供する主なサービスをご紹介します。詳細はお問い合わせください。
       </p>
 
       <ul className="mt-12 space-y-10">

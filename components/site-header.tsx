@@ -18,13 +18,13 @@ export function SiteHeader() {
         >
           <Image
             src="/mark.jpg"
-            alt={`${siteConfig.name} ロゴ`}
+            alt={`${siteConfig.brandName} ロゴ`}
             width={40}
             height={40}
             className="h-9 w-9 shrink-0 rounded-sm object-contain"
             priority
           />
-          <span className="hidden text-sm sm:inline">{siteConfig.name}</span>
+          <span className="hidden text-sm sm:inline">{siteConfig.brandName}</span>
         </Link>
 
         <nav className="hidden items-center gap-1 md:flex" aria-label="メインナビゲーション">

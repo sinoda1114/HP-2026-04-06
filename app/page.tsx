@@ -88,23 +88,17 @@ export default function HomePage() {
       <section className="border-y border-[var(--color-border)] bg-[var(--color-surface)]">
         <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-14 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
           <div>
-            <h2 className="text-xl font-bold text-[var(--color-ink)]">実績・プロフィール</h2>
+            <h2 className="text-xl font-bold text-[var(--color-ink)]">実績</h2>
             <p className="mt-2 text-sm text-[var(--color-muted)]">
-              具体的な社名は非公開とした事例や、担当者の経歴をご紹介しています。
+              守秘に配慮し社名は非公開とした、生成AI関連の担当範囲の一例をご紹介しています。
             </p>
           </div>
-          <div className="flex flex-wrap gap-3">
+          <div>
             <Link
               href="/works"
-              className="rounded-lg bg-white px-5 py-2.5 text-sm font-semibold text-[var(--color-primary)] ring-1 ring-[var(--color-border)] hover:ring-[var(--color-primary)]"
+              className="inline-flex rounded-lg bg-[var(--color-primary)] px-5 py-2.5 text-sm font-semibold text-white hover:bg-[var(--color-primary-dark)]"
             >
               実績を見る
-            </Link>
-            <Link
-              href="/profile"
-              className="rounded-lg bg-[var(--color-primary)] px-5 py-2.5 text-sm font-semibold text-white hover:bg-[var(--color-primary-dark)]"
-            >
-              プロフィール
             </Link>
           </div>
         </div>

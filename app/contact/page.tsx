@@ -4,7 +4,7 @@ import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
   title: "お問い合わせ",
-  description: `${siteConfig.name}へのお問い合わせフォームです。`,
+  description: `${siteConfig.brandName}へのお問い合わせフォームです。`,
 };
 
 export default function ContactPage() {

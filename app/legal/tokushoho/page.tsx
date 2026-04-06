@@ -3,7 +3,7 @@ import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
   title: "特定商取引法に基づく表記",
-  description: `${siteConfig.name}の特定商取引法に基づく表記です。`,
+  description: `${siteConfig.brandName}の特定商取引法に基づく表記です。`,
 };
 
 export default function TokushohoPage() {

@@ -3,7 +3,7 @@ import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
   title: "利用規約",
-  description: `${siteConfig.name}のウェブサイト利用規約です。`,
+  description: `${siteConfig.brandName}のウェブサイト利用規約です。`,
 };
 
 export default function TermsPage() {
@@ -21,7 +21,7 @@ export default function TermsPage() {
 
         <h2>第1条（適用）</h2>
         <p>
-          本規約は、{siteConfig.name}（以下「当社」）が運営する本サイトの利用条件を定めるものです。
+          本規約は、{siteConfig.legalName}（以下「当社」）が運営する本サイトの利用条件を定めるものです。
         </p>
 
         <h2>第2条（禁止事項）</h2>

@@ -85,7 +85,7 @@ export default async function BlogPostPage({
         {content}
       </div>
       <footer className="mt-16 border-t border-[var(--color-border)] pt-8">
-        <p className="text-sm text-[var(--color-muted)]">{siteConfig.name}</p>
+        <p className="text-sm text-[var(--color-muted)]">{siteConfig.brandName}</p>
       </footer>
     </article>
   );

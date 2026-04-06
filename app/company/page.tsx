@@ -4,7 +4,7 @@ import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
   title: "会社概要",
-  description: `${siteConfig.name}の会社概要・基本情報です。`,
+  description: `${siteConfig.brandName}の会社概要・基本情報です。`,
 };
 
 export default function CompanyPage() {
@@ -12,7 +12,7 @@ export default function CompanyPage() {
     <div className="mx-auto max-w-3xl px-4 py-14 sm:px-6 lg:px-8">
       <h1 className="text-3xl font-bold tracking-tight text-[var(--color-ink)]">会社概要</h1>
       <p className="mt-4 text-[var(--color-muted)]">
-        {siteConfig.name}は、生成AIを活用したソリューションとコンサルティングでお客様のビジネスを支援します。
+        {siteConfig.brandName}は、生成AIを活用したソリューションとコンサルティングでお客様のビジネスを支援します。
       </p>
 
       <dl className="mt-10 space-y-6 border-t border-[var(--color-border)] pt-10">

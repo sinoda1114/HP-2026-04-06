@@ -1,5 +1,6 @@
 export const siteConfig = {
-  name: "株式会社Waalsforce",
+  /** ヘッダー・フッター・タイトルなど（法的表記は legalName） */
+  brandName: "Waalsforce",
   legalName: "株式会社Waalsforce",
   tagline: "AIで未来を創造する",
   description:
@@ -26,7 +27,6 @@ export const navItems = [
   { href: "/company", label: "会社概要" },
   { href: "/services", label: "サービス" },
   { href: "/works", label: "実績" },
-  { href: "/profile", label: "プロフィール" },
   { href: "/blog", label: "ブログ" },
   { href: "/contact", label: "お問い合わせ" },
 ] as const;

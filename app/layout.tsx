@@ -14,21 +14,21 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.name} | AIソリューション・コンサルティング`,
-    template: `%s | ${siteConfig.name}`,
+    default: `${siteConfig.brandName} | AIソリューション・コンサルティング`,
+    template: `%s | ${siteConfig.brandName}`,
   },
   description: siteConfig.description,
   openGraph: {
     type: "website",
     locale: "ja_JP",
     url: siteConfig.url,
-    siteName: siteConfig.name,
-    title: `${siteConfig.name} | AIソリューション・コンサルティング`,
+    siteName: siteConfig.brandName,
+    title: `${siteConfig.brandName} | AIソリューション・コンサルティング`,
     description: siteConfig.description,
   },
   twitter: {
     card: "summary_large_image",
-    title: `${siteConfig.name} | AIソリューション・コンサルティング`,
+    title: `${siteConfig.brandName} | AIソリューション・コンサルティング`,
     description: siteConfig.description,
   },
   robots: {

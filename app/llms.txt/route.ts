@@ -3,7 +3,7 @@ import { siteConfig } from "@/lib/site-config";
 export async function GET() {
   const base = siteConfig.url;
 
-  const body = `# ${siteConfig.name}
+  const body = `# ${siteConfig.brandName}
 
 > ${siteConfig.description}
 
@@ -30,8 +30,7 @@ export async function GET() {
 
 ## Optional
 
-- [実績（匿名事例）](${base}/works): 社名非公開の事例概要
-- [プロフィール](${base}/profile): 経歴概要（匿名化）
+- [実績（匿名事例）](${base}/works): 生成AI関連プロジェクトの担当範囲の一例（社名非公開）
 `;
 
   return new Response(body, {
