@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Card } from "@heroui/react/card";
+import { ScrollReveal } from "@/components/scroll-reveal";
 
 export const metadata: Metadata = {
   title: "実績",
@@ -73,19 +74,22 @@ const cases = [
 export default function WorksPage() {
   return (
     <div className="mx-auto max-w-3xl px-4 py-14 sm:px-6 lg:px-8">
-      <h1 className="text-3xl font-bold tracking-tight text-[var(--color-ink)]">実績</h1>
-      <p className="mt-4 text-[var(--color-muted)]">
-        守秘契約およびお客様のご意向により、具体的な社名・固有名詞は掲載しておりません。業種や規模感、担当範囲のイメージとしてご参照ください。
-      </p>
+      <ScrollReveal>
+        <h1 className="text-3xl font-bold tracking-tight text-[var(--color-ink)]">実績</h1>
+        <p className="mt-4 text-[var(--color-muted)]">
+          守秘契約およびお客様のご意向により、具体的な社名・固有名詞は掲載しておりません。業種や規模感、担当範囲のイメージとしてご参照ください。
+        </p>
 
-      <h2 className="mt-12 text-xl font-semibold tracking-tight text-[var(--color-ink)]">
-        生成AI関連プロジェクト実績
-      </h2>
+        <h2 className="mt-12 text-xl font-semibold tracking-tight text-[var(--color-ink)]">
+          生成AI関連プロジェクト実績
+        </h2>
+      </ScrollReveal>
 
       <ul className="mt-8 space-y-8">
         {cases.map((c) => (
           <li key={c.segment}>
-            <Card variant="secondary" className="shadow-sm">
+            <ScrollReveal>
+              <Card variant="secondary" className="shadow-sm">
               <Card.Content>
                 <Card.Title className="text-lg font-semibold text-[var(--color-ink)]">{c.segment}</Card.Title>
                 <Card.Description className="mt-3 text-sm leading-relaxed text-[var(--color-muted)]">
@@ -93,6 +97,7 @@ export default function WorksPage() {
                 </Card.Description>
               </Card.Content>
             </Card>
+            </ScrollReveal>
           </li>
         ))}
       </ul>

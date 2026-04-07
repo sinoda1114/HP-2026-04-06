@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { compileMDX } from "next-mdx-remote/rsc";
 import { cn, buttonVariants, linkVariants } from "@heroui/styles";
 import { getAllPosts, getPostSource, postExists } from "@/lib/blog";
+import { ScrollReveal } from "@/components/scroll-reveal";
 import { siteConfig } from "@/lib/site-config";
 
 type BlogFrontmatter = {
@@ -68,29 +69,31 @@ export default async function BlogPostPage({
 
   return (
     <article className="mx-auto max-w-3xl px-4 py-14 sm:px-6 lg:px-8">
-      <Link href="/blog" className={backLinkClass}>
-        ← ブログ一覧
-      </Link>
-      <header className="mt-6 border-b border-[var(--color-border)] pb-8">
-        <time
-          dateTime={frontmatter.date}
-          className="text-sm font-medium text-[var(--color-primary)]"
-        >
-          {frontmatter.date}
-        </time>
-        <h1 className="mt-2 text-3xl font-bold tracking-tight text-[var(--color-ink)]">
-          {frontmatter.title}
-        </h1>
-        {frontmatter.description ? (
-          <p className="mt-4 text-[var(--color-muted)]">{frontmatter.description}</p>
-        ) : null}
-      </header>
-      <div className="prose prose-slate mt-10 max-w-none prose-headings:text-[var(--color-ink)] prose-a:text-[var(--color-primary)]">
+      <ScrollReveal>
+        <Link href="/blog" className={backLinkClass}>
+          ← ブログ一覧
+        </Link>
+        <header className="mt-6 border-b border-[var(--color-border)] pb-8">
+          <time
+            dateTime={frontmatter.date}
+            className="text-sm font-medium text-[var(--color-primary)]"
+          >
+            {frontmatter.date}
+          </time>
+          <h1 className="mt-2 text-3xl font-bold tracking-tight text-[var(--color-ink)]">
+            {frontmatter.title}
+          </h1>
+          {frontmatter.description ? (
+            <p className="mt-4 text-[var(--color-muted)]">{frontmatter.description}</p>
+          ) : null}
+        </header>
+      </ScrollReveal>
+      <ScrollReveal className="prose prose-slate mt-10 max-w-none prose-headings:text-[var(--color-ink)] prose-a:text-[var(--color-primary)]">
         {content}
-      </div>
-      <footer className="mt-16 border-t border-[var(--color-border)] pt-8">
+      </ScrollReveal>
+      <ScrollReveal as="footer" className="mt-16 border-t border-[var(--color-border)] pt-8">
         <p className="text-sm text-[var(--color-muted)]">{siteConfig.brandName}</p>
-      </footer>
+      </ScrollReveal>
     </article>
   );
 }

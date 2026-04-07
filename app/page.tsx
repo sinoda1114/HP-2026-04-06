@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Card } from "@heroui/react/card";
 import { cn, buttonVariants } from "@heroui/styles";
+import { ScrollReveal } from "@/components/scroll-reveal";
 import { siteConfig } from "@/lib/site-config";
 
 const highlights = [
@@ -71,7 +72,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
+      <ScrollReveal
+        as="section"
+        className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8"
+      >
         <h2 className="text-2xl font-bold text-[var(--color-ink)]">私たちの強み</h2>
         <p className="mt-2 max-w-2xl text-[var(--color-muted)]">
           生成AIの可能性を、実務に落ちる形でお届けします。
@@ -95,9 +99,12 @@ export default function HomePage() {
             </li>
           ))}
         </ul>
-      </section>
+      </ScrollReveal>
 
-      <section className="border-y border-[var(--color-border)] bg-[var(--color-surface)]">
+      <ScrollReveal
+        as="section"
+        className="border-y border-[var(--color-border)] bg-[var(--color-surface)]"
+      >
         <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-14 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
           <div>
             <h2 className="text-xl font-bold text-[var(--color-ink)]">実績</h2>
@@ -111,9 +118,12 @@ export default function HomePage() {
             </Link>
           </div>
         </div>
-      </section>
+      </ScrollReveal>
 
-      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
+      <ScrollReveal
+        as="section"
+        className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8"
+      >
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <h2 className="text-2xl font-bold text-[var(--color-ink)]">ブログ</h2>
@@ -126,9 +136,9 @@ export default function HomePage() {
             記事一覧へ
           </Link>
         </div>
-      </section>
+      </ScrollReveal>
 
-      <section className="pb-20">
+      <ScrollReveal as="section" className="pb-20">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="rounded-2xl bg-[var(--color-primary)] px-8 py-12 text-center text-white sm:px-12">
             <h2 className="text-2xl font-bold">まずはお気軽にご相談ください</h2>
@@ -146,7 +156,7 @@ export default function HomePage() {
             </Link>
           </div>
         </div>
-      </section>
+      </ScrollReveal>
     </>
   );
 }
