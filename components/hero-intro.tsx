@@ -35,7 +35,10 @@ export function HeroIntro({ tagline, description }: HeroIntroProps) {
   const reduceMotion = useReducedMotion();
 
   useEffect(() => {
-    setMounted(true);
+    const id = requestAnimationFrame(() => {
+      setMounted(true);
+    });
+    return () => cancelAnimationFrame(id);
   }, []);
 
   const showAnimation = shouldShowHeroAnimation(mounted, reduceMotion);
