@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Card } from "@heroui/react/card";
 import { cn, buttonVariants } from "@heroui/styles";
+import { HeroIntro } from "@/components/hero-intro";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { siteConfig } from "@/lib/site-config";
 
@@ -44,31 +45,7 @@ export default function HomePage() {
         </div>
 
         <div className="relative z-10 mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
-          <div className="max-w-2xl">
-            <h1 className="mt-4 text-4xl font-bold tracking-tight text-[var(--color-ink)] drop-shadow-sm sm:text-5xl">
-              {siteConfig.tagline}
-            </h1>
-            <p className="mt-6 text-lg leading-relaxed text-[var(--color-muted)] drop-shadow-sm">
-              {siteConfig.description}
-            </p>
-            <div className="mt-10 flex flex-wrap gap-4">
-              <Link
-                href="/contact"
-                className={cn(buttonVariants({ variant: "primary", size: "md" }))}
-              >
-                お問い合わせ
-              </Link>
-              <Link
-                href="/services"
-                className={cn(
-                  buttonVariants({ variant: "secondary", size: "md" }),
-                  "border border-[var(--color-border)] bg-white/90 shadow-sm backdrop-blur-sm hover:border-[var(--color-primary)] hover:text-[var(--color-primary)]",
-                )}
-              >
-                サービスを見る
-              </Link>
-            </div>
-          </div>
+          <HeroIntro tagline={siteConfig.tagline} description={siteConfig.description} />
         </div>
       </section>
 
