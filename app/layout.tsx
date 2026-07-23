@@ -25,11 +25,20 @@ export const metadata: Metadata = {
     siteName: siteConfig.brandName,
     title: `${siteConfig.brandName} | AIソリューション・コンサルティング`,
     description: siteConfig.description,
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Waalsforce - AIで未来を創造する",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: `${siteConfig.brandName} | AIソリューション・コンサルティング`,
     description: siteConfig.description,
+    images: ["/og-image.png"],
   },
   robots: {
     index: true,
