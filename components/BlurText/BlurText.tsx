@@ -60,11 +60,11 @@ const BlurText: React.FC<BlurTextProps> = ({
   const ref = useRef<HTMLElement>(null);
   const Component = Tag as ElementType;
 
+  // animateOnMount のときは描画中に状態をそろえる（effect 内の setState を避ける）
+  if (animateOnMount && !inView) setInView(true);
+
   useEffect(() => {
-    if (animateOnMount) {
-      setInView(true);
-      return;
-    }
+    if (animateOnMount) return;
 
     const el = ref.current;
     if (!el) return;
